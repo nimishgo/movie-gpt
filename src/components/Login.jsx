@@ -19,7 +19,7 @@ const Login = () => {
   };
 
   return (
-    <div className="bg-banner bg-cover h-screen">
+    <div className="bg-black sm:bg-banner sm:bg-cover h-screen">
       <Header />
       <form
         className="bg-black bg-opacity-80 fixed w-8/12 md:w-6/12 lg:w-4/12 mx-auto sm:my-36 mt-44 right-0 left-0 text-neutral-50 p-4 sm:p-12 rounded-lg"

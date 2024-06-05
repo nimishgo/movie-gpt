@@ -6,11 +6,11 @@ export const checkValidData = (email, password) => {
     /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/.test(password);
 
   if (!isEmailValid) {
-    return "email id is not valid";
+    return "Your password must contain between 4 and 60 characters.";
   }
 
   if (!isPasswordValid) {
-    return "password is not valid";
+    return "Your password must contain between 4 and 60 characters.";
   }
 
   return null;
