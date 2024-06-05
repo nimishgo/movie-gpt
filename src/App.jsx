@@ -1,9 +1,7 @@
+import Body from "./components/Body";
+
 function App() {
-  return (
-    <>
-      <p className="text-3xl font-extrabold">New World!</p>
-    </>
-  );
+  return <Body></Body>;
 }
 
 export default App;
