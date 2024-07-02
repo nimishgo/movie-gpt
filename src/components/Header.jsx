@@ -6,17 +6,15 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { addUser, removeUser } from "../utils/userSlice";
-// import appStore from "../utils/appStore";
 
 const Header = ({ setShowSignOut, showSignOut }) => {
   const dispatch = useDispatch();
   const user = useSelector((appStore) => appStore.user);
   const navigate = useNavigate();
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         const { uid, email, displayName, photoURL } = user;
-        console.log(displayName, photoURL, email, uid);
         dispatch(
           addUser({
             uid: uid,
@@ -31,6 +29,8 @@ const Header = ({ setShowSignOut, showSignOut }) => {
         navigate("/");
       }
     });
+
+    return () => unsubscribe();
   }, [dispatch, navigate]);
 
   const handleSignOut = () => {
