@@ -4,15 +4,21 @@ import { checkValidData } from "../utils/validate";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addUser } from "../utils/userSlice";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMsg, setErrorMsg] = useState(null);
+  const dispatch = useDispatch();
   const name = useRef(null);
   const email = useRef(null);
   const password = useRef(null);
+  const navigate = useNavigate();
 
   const handleToggle = () => {
     setIsSignInForm(!isSignInForm);
@@ -30,7 +36,26 @@ const Login = () => {
       )
         .then((userCredential) => {
           const user = userCredential.user;
-          alert("User is registered" + user);
+          updateProfile(user, {
+            displayName: name.current.value,
+            photoURL: "https://avatars.githubusercontent.com/u/37079834?v=4",
+          })
+            .then(() => {
+              const user = userCredential.user;
+              const { uid, email, displayName, photoURL } = user;
+              dispatch(
+                addUser({
+                  uid: uid,
+                  email: email,
+                  displayName: displayName,
+                  photoURL: photoURL,
+                })
+              );
+              navigate("/browse");
+            })
+            .catch((error) => {
+              setErrorMsg(error.message);
+            });
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -45,7 +70,16 @@ const Login = () => {
       )
         .then((userCredential) => {
           const user = userCredential.user;
-          alert(user.email + " signed up");
+          const { uid, email, displayName, photoURL } = user;
+          dispatch(
+            addUser({
+              uid: uid,
+              email: email,
+              displayName: displayName,
+              photoURL: photoURL,
+            })
+          );
+          navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;
