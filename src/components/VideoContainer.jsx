@@ -5,7 +5,7 @@ const VideoContainer = ({ id }) => {
   useGetTrailer(id);
   const key = useSelector((store) => store.movies.nowPlayingTrailer?.key);
   return (
-    <div className="absolute -z-10 w-full top-0">
+    <div className="absolute -z-5 w-full top-0">
       <iframe
         className="select-none  aspect-video w-full text-white pointer-events-none"
         src={`https://www.youtube.com/embed/${key}?controls=0&autoplay=1&mute=1&loop=1&playlist=${key}`}

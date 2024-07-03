@@ -1,0 +1,48 @@
+.items {
+  margin: 12px auto;
+  position: relative;
+  width: 97%;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  transition: all 0.2s;
+  transform: scale(0.98);
+  will-change: transform;
+  cursor: pointer;
+  padding: 0;
+  display: grid;
+  column-gap: 2em;
+  grid-auto-flow: column;
+}
+
+.items {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+.items::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
+.carousel-container {
+  position: relative;
+  width: 100%;
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.left-arrow {
+  left: 10px;
+}
+
+.right-arrow {
+  right: 10px;
+}

@@ -1,7 +1,7 @@
 const VideoTitle = ({ original_title, overview }) => {
   console.log(original_title, overview);
   return (
-    <div className="px-11 text-white relative pt-96 bg-gradient-to-r from-black aspect-video space-y-10">
+    <div className="px-11 text-white relative z-10 pt-[24rem] bg-gradient-to-r from-black aspect-video space-y-10">
       <h1 className="font-bold text-6xl">{original_title}</h1>
       <p className="text-lg w-1/4">{overview}</p>
       <div className="my-4">

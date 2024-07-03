@@ -11,7 +11,7 @@ const MainVideoContainer = () => {
   const { original_title, overview, id } = mainMovies;
 
   return (
-    <div className="relative -top-48">
+    <div className="relative">
       <VideoTitle original_title={original_title} overview={overview} />
       <VideoContainer id={id} />
     </div>

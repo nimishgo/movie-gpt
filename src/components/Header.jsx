@@ -44,7 +44,7 @@ const Header = ({ setShowSignOut, showSignOut }) => {
       });
   };
   return (
-    <div className="absolute px-8 py-2 bg-gradient-to-b from-neutral-950 w-full z-10 flex justify-between">
+    <div className="absolute z-50 px-8 py-2 bg-gradient-to-b from-neutral-950 w-full z-10 flex justify-between">
       <img src={iconImg} alt="logo" className="w-4/12 md:w-44" />
       <div className="flex justify-between items-center ">
         {showSignOut && (
