@@ -6,10 +6,12 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { addUser, removeUser } from "../utils/userSlice";
+import { toggleShowSearch, toggleShowVideo } from "../utils/userConfig";
 
 const Header = ({ setShowSignOut, showSignOut }) => {
   const dispatch = useDispatch();
   const user = useSelector((appStore) => appStore.user);
+  const showGpt = useSelector((store) => store.userConfig.showSearch);
   const navigate = useNavigate();
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -43,8 +45,13 @@ const Header = ({ setShowSignOut, showSignOut }) => {
         console.log(error);
       });
   };
+
+  const toggleSearch = () => {
+    dispatch(toggleShowSearch());
+    dispatch(toggleShowVideo());
+  };
   return (
-    <div className="absolute z-50 px-8 py-2 bg-gradient-to-b from-neutral-950 w-full z-10 flex justify-between">
+    <div className="absolute z-50 px-8 py-2 bg-gradient-to-b from-neutral-950 w-full flex justify-between">
       <img src={iconImg} alt="logo" className="w-4/12 md:w-44" />
       <div className="flex justify-between items-center ">
         {showSignOut && (
@@ -60,7 +67,13 @@ const Header = ({ setShowSignOut, showSignOut }) => {
               </p>
             </div>
             <button
-              className="p-2 text-neutral-50 font-semibold rounded-lg text-xl"
+              className="bg-purple-400 px-4 py-2 rounded-lg text-white font-bold mx-4"
+              onClick={toggleSearch}
+            >
+              {showGpt ? "Home" : "Gpt Search"}
+            </button>
+            <button
+              className="px-4 py-2 text-neutral-50 font-bold rounded-lg bg-rose-500"
               onClick={handleSignOut}
             >
               Sign Out

@@ -4,7 +4,6 @@ import CustomCarousel from "./MovieCarousel";
 const MovieScroll = () => {
   const movies = useSelector((store) => store.movies);
   const { nowPlayingMovies, popular, topRated, upcoming } = movies;
-  console.log(nowPlayingMovies, popular, topRated, upcoming);
   return (
     <div className="relative -top-52 px-4 z-30 space-y-5">
       <h1 className="px-5 text-3xl text-white">Now Playing Movies</h1>

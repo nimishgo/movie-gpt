@@ -6,8 +6,11 @@ import MovieScroll from "./MovieScroll";
 import useTopRated from "../hooks/useTopRated";
 import usePopular from "../hooks/usePopular";
 import useUpcoming from "../hooks/useUpcoming";
+import { useSelector } from "react-redux";
+import GptSearch from "./GptSearch";
 
 const Browse = () => {
+  const showSearch = useSelector((store) => store.userConfig.showSearch);
   useNowPlayingMovies();
   useTopRated();
   usePopular();
@@ -16,8 +19,14 @@ const Browse = () => {
   return (
     <div>
       <Header showSignOut={showSignOut} setShowSignOut={setShowSignOut} />
-      <MainVideoContainer />
-      <MovieScroll />
+      {showSearch ? (
+        <GptSearch />
+      ) : (
+        <>
+          <MainVideoContainer />
+          <MovieScroll />
+        </>
+      )}
     </div>
   );
 };
